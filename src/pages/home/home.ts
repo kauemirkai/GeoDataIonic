@@ -16,21 +16,21 @@ export class HomePage {
   }
   public Continente : Continente[];
 
-  optionsFn(Countries) { 
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
-    console.log("Countries", Countries);
+  optionsFn(Continente) { 
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
+    console.log("Countries", Continente);
 
     
-    this.navCtrl.push(ListarPaisesPage, {Countries: Countries});
+    this.navCtrl.push(ListarPaisesPage, {Continente: Continente});
 
 }
 }

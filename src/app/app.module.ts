@@ -7,6 +7,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListarPaisesPageModule } from '../pages/listar-paises/listar-paises.module';
+import { DescricaoPageModule } from '../pages/descricao/descricao.module';
+import {HttpModule} from "@angular/http";
+import { PaisProvider } from '../providers/pais/pais';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import { ListarPaisesPageModule } from '../pages/listar-paises/listar-paises.mod
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    ListarPaisesPageModule
+    ListarPaisesPageModule,
+    DescricaoPageModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,7 +31,8 @@ import { ListarPaisesPageModule } from '../pages/listar-paises/listar-paises.mod
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PaisProvider
   ]
 })
 export class AppModule {}
