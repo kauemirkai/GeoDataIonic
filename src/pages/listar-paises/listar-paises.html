@@ -16,72 +16,15 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let Pais of Paises">
       <ion-avatar item-start>
         <img src="../../assets/imgs/images.png">
       </ion-avatar>
-      <h2>Country name</h2>
-      <h3>Country description</h3>
-      <p>Country text</p>
+      <h2>{{Pais.nome}}</h2>
+      <h3>{{Pais.currency}}</h3>
+      <p>{{Pais.capital}}</p>
       <button ion-button color="dark" clear>Detalhes</button>
     </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/images.png">
-      </ion-avatar>
-      <h2>Country name</h2>
-      <h3>Country description</h3>
-      <p>Country text</p>
-      <button ion-button color="dark" clear>Detalhes</button>
-    </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/images.png">
-      </ion-avatar>
-      <h2>Country name</h2>
-      <h3>Country description</h3>
-      <p>Country text</p>
-      <button ion-button color="dark" clear>Detalhes</button>
-    </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/images.png">
-      </ion-avatar>
-      <h2>Country name</h2>
-      <h3>Country description</h3>
-      <p>Country text</p>
-      <button ion-button color="dark" clear>Detalhes</button>
-    </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/images.png">
-      </ion-avatar>
-      <h2>Country name</h2>
-      <h3>Country description</h3>
-      <p>Country text</p>
-      <button ion-button color="dark" clear>Detalhes</button>
-    </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/images.png">
-      </ion-avatar>
-      <h2>Country name</h2>
-      <h3>Country description</h3>
-      <p>Country text</p>
-      <button ion-button color="dark" clear>Detalhes</button>
-    </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/images.png">
-      </ion-avatar>
-      <h2>Country name</h2>
-      <h3>Country description</h3>
-      <p>Country text</p>
-      <button ion-button color="dark" clear>Detalhes</button>
-    </ion-item>
-
-
-
   </ion-list>
 
 
