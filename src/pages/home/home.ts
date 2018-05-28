@@ -14,7 +14,6 @@ export class HomePage {
     console.log("Countries");
 
   }
-  public Continente : Continente[];
 
   optionsFn(Continente) { 
     console.log("Countries", Continente);

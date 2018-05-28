@@ -28,7 +28,6 @@ export class ListarPaisesPage {
     this.Continente = this.navParams.get("Continente");
   }
 
-  public Paises: Pais[];
 
   
 
@@ -37,7 +36,7 @@ export class ListarPaisesPage {
       data => {
         const response = (data as any);
         const objeto_retorno = JSON.parse(response._body);
-        this.lista_paises = objeto_retorno.results;
+        this.lista_paises = objeto_retorno;
         console.log(this.lista_paises);
         console.log(objeto_retorno);
         

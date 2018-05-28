@@ -7,12 +7,38 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Descricao</ion-title>
+    <ion-title>{{paisNome}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<h2>PENIS MOLENGA</h2>
+
+    
+
+ <ion-list>
+    <ion-item *ngFor="let pais of lista_pais" padding> 
+      <img src="../../assets/imgs/{{pais.alpha3Code}}.png" width="200px" height="200PX">
+      <h2>Nome: {{pais.name}}</h2>
+      <hr>
+
+      <h2>Capital: {{pais.capital}}</h2>
+      <h2>Calling code: {{pais.callingCodes}}</h2>
+      <h2>Time zones: {{pais.timezones}}</h2>
+      <h2>Região: {{pais.region}}</h2>
+      <h2>Sub-região: {{pais.subregion}}</h2>
+      <h2>População: {{pais.population}} persons</h2>
+      
+
+      
+     <!-- <h3>{{pais.capital}}</h3>
+      <p>{{pais.region}}</p>-->
+      
+    </ion-item>
+  </ion-list>
+
+
+
+
 </ion-content>

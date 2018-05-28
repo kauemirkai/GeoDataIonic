@@ -16,7 +16,17 @@ export class PaisProvider {
   }
 
   getContinente(Continente) {
-    return this.http.get(this.baseApiPath + "region/"+Continente);
+    if (Continente == 'all'){
+      return this.http.get(this.baseApiPath + Continente);
+      
+    }
+    return this.http.get(this.baseApiPath + "region/" + Continente);
+    }
+
+
+    getSinglePais(Pais){
+      return this.http.get(this.baseApiPath + "name/" + Pais + "?fullText=true")
+
     }
 
 }

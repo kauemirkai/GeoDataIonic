@@ -14,21 +14,20 @@
 
 
 <ion-content padding>
-
   <ion-list>
-    <ion-item *ngFor="let pais of objeto_retorno">
+    <ion-item *ngFor="let pais of lista_paises">
       <ion-avatar item-start>
-        <img src="../../assets/imgs/images.png">
+        <img src="../../assets/imgs/{{pais.alpha3Code}}.png">
       </ion-avatar>
       <h2>{{pais.name}}</h2>
-      <h2>test</h2>
+      <h2>Capital: {{pais.capital}}</h2>
      <!-- <h3>{{pais.capital}}</h3>
       <p>{{pais.region}}</p>-->
-      <button ion-button color="dark" clear (click)="listarDetalhes(Pais.nome)">Detalhes</button>
+      <button ion-button color="dark" clear (click)="listarDetalhes(pais.name)">Detalhes</button>
     </ion-item>
   </ion-list>
 
 
 
 
-</ion-content>
+</ion-content> 
