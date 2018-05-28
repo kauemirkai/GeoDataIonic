@@ -33,6 +33,9 @@ export class ListarPaisesPage {
 
   ionViewDidLoad() {
     this.PaisProvider.getContinente(this.Continente).subscribe(
+
+    
+
       data => {
         const response = (data as any);
         const objeto_retorno = JSON.parse(response._body);

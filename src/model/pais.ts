@@ -1,14 +1,12 @@
 export interface Pais{
-    nome: string;
-    fullName: string;
-    code:string;
-    listCodes:string;
-    currency:string;
-    language:string;
-    capital:string;
-    calling:string;
+    id : number;
+    name: string;
+    capital: string;
+    callingCodes:string;
+    timezones:string;
     region:string;
-    regionalBlock:string;
+    subregion:string;
+    population:string;
 
 
 }
