@@ -5,19 +5,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { DatabaseProvider } from '../providers/database/database';
+import { SQLite } from '@ionic-native/sqlite';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-
-  rootPage: any = HomePage;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, dbProvider: DatabaseProvider) {
+  //ainda	não	tem	rootPage...
+  rootPage: any = null;
+  constructor(platform: Platform,
+    statusBar: StatusBar, splashScreen: SplashScreen, DatabaseProvider: DatabaseProvider) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      //	Okay,	so	the	platform	is	ready	and	our	plugins	are	available.
+      //	Here	you	can	do	any	higher	level	native	things	you	might	need.
       statusBar.styleDefault();
-      dbProvider.createDatabase().then(() => {
+      DatabaseProvider.createDatabase().then(() => {
         //para	abrir	a	home	page	somente	depois	de	criar	a	base
         this.abrirHomePage(splashScreen);
       }).catch((e) => {
@@ -29,8 +30,7 @@ export class MyApp {
   }
   private abrirHomePage(splashScreen: SplashScreen) {
     splashScreen.hide();
-    this.rootPage =	HomePage;
-  };
+    //configura	a	root	page	depois	de	criar	o	bancos
+    this.rootPage = HomePage;
+  }
 }
-
-

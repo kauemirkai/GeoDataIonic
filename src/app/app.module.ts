@@ -14,6 +14,7 @@ import { DatabaseProvider } from '../providers/database/database';
 import {SQLite}	from '@ionic-native/sqlite'
 import { PaisDbProvider } from '../providers/pais-db/pais-db';
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -38,8 +39,6 @@ import { PaisDbProvider } from '../providers/pais-db/pais-db';
     PaisProvider,
     SQLite,
     DatabaseProvider,
-    PaisProvider,
-    PaisDbProvider
   ]
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 export interface Pais{
     id : number;
     name: string;
+    /*
     capital: string;
     callingCodes:string;
     timezones:string;
@@ -8,5 +9,5 @@ export interface Pais{
     subregion:string;
     population:string;
 
-
+*/
 }

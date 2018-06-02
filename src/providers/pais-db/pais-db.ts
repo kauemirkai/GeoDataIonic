@@ -13,25 +13,19 @@ import { SQLiteObject } from '@ionic-native/sqlite';
 export class PaisDbProvider {
 
 
-  constructor(private dbProvider: DatabaseProvider) {
+  constructor(private dbProvider: DatabaseProvider, private PaisDbProvider:PaisDbProvider) {
     console.log('Hello PaisDbProvider Provider');
   }
 
 
-  
+
 
   public inserir(pais: Pais) {
 
-
-
-
-    
-
-
     return this.dbProvider.openDatabase().
       then((db: SQLiteObject) => {
-        let sql = "INSERT	INTO	paises	(name,	capital,	callingCodes, timezones, region, subregion, population)	VALUES	(?,	?, ?, ?, ?, ?, ?)";
-        let parametros = [pais.name, pais.capital, pais.callingCodes, pais.timezones, pais.region, pais.subregion, pais.population];
+        let sql = "INSERT	INTO	paises	(name)	VALUES	(?)";
+        let parametros = [pais.name/*, pais.capital, pais.callingCodes, pais.timezones, pais.region, pais.subregion, pais.population*/];
         return db.executeSql(sql, parametros).
           catch((e) => {
             console.log(e);
@@ -71,6 +65,6 @@ export class PaisDbProvider {
 
 
 
-  
+
 
 }

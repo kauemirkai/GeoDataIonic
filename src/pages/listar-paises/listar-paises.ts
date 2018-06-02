@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Pais } from '../../model/pais';
 import { DescricaoPage } from '../descricao/descricao';
 import { PaisProvider } from '../../providers/pais/pais';
+import { PaisDbProvider } from '../../providers/pais-db/pais-db';
+import { DatabaseProvider } from '../../providers/database/database';
+
 
 /**
  * Generated class for the ListarPaisesPage page.
@@ -20,11 +23,13 @@ import { PaisProvider } from '../../providers/pais/pais';
   ]
 })
 export class ListarPaisesPage {
+  PaisDbProvider: any;
   public Pais;
   public Continente;
   public lista_paises = new Array<any>();
+  public test:Pais;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private PaisProvider: PaisProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private PaisProvider: PaisProvider,private dbProvider:DatabaseProvider) {
     this.Continente = this.navParams.get("Continente");
   }
 
@@ -32,8 +37,9 @@ export class ListarPaisesPage {
   
 
   ionViewDidLoad() {
-    this.PaisProvider.getContinente(this.Continente).subscribe(
+    
 
+   this.PaisProvider.getContinente(this.Continente).subscribe(
     
 
       data => {
@@ -45,8 +51,18 @@ export class ListarPaisesPage {
         
       }, error => {
         console.log(error);
+        
       }
     )
+    
+
+
+
+  }
+
+  carregarSqlite(){
+    this.PaisDbProvider.inserir(this.test);
+    this.PaisDbProvider.listar();
 
   }
 

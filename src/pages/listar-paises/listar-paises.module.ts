@@ -8,6 +8,7 @@ import { ListarPaisesPage } from './listar-paises';
   ],
   imports: [
     IonicPageModule.forChild(ListarPaisesPage),
+  
   ],
 })
 export class ListarPaisesPageModule {}
