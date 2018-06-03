@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { SQLite, SQLiteObject }	from '@ionic-native/sqlite';
 
 /*
   Generated class for the DatabaseProvider provider.
@@ -10,9 +9,9 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 */
 @Injectable()
 export class DatabaseProvider {
-  any
-  constructor(private db: SQLite) {
-    console.log('Hello DatabaseProvider Provider');
+
+  constructor(public db: SQLite) {
+    
   }
 
   openDatabase() {
@@ -24,15 +23,15 @@ export class DatabaseProvider {
 
   createDatabase() {
     return this.openDatabase().
-      then((db: SQLiteObject) => {
-        this.createTabelaClientes(db);
-      });
+    then((db: SQLiteObject) => {
+      this.createTabelaPais(db);
+    });
   }
-  createTabelaClientes(db: SQLiteObject) {
-    let sql: string = "CREATE	TABLE	IF	NOT	EXISTS	paises	(id	INTEGER	PRIMARY	KEY	AUTOINCREMENT,	" +
-      "	name	VARCHAR	(200))";
-    db.executeSql(sql, {});//{poderia	conter	parâmetros,	por	isso	o	{}}
+
+  createTabelaPais(db: SQLiteObject) {
+    let sql: string =  "CREATE TABLE IF NOT EXISTS pais (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, codigo3 TEXT, capital TEXT, regiao TEXT, subRegiao TEXT, demonimo TEXT, populacao INTEGER, area INTEGER, gini DOUBLE, latitude DOUBLE, longitude DOUBLE)";
+    db.executeSql(sql, {});
+    console.log("createTabelaPaises");
   }
 
 }
-

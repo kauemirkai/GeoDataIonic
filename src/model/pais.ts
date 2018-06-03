@@ -1,13 +1,12 @@
-export interface Pais{
-    id : number;
+export interface Pais {
     name: string;
-    /*
+    alpha3Code: string;
     capital: string;
-    callingCodes:string;
-    timezones:string;
-    region:string;
-    subregion:string;
-    population:string;
-
-*/
+    region: string;
+    subregion: string;
+    demonym: string;
+    population: number;
+    area: number;
+    gini: number;
+    latlng: Array<any>;
 }

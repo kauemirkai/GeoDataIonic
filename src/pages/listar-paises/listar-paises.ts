@@ -4,7 +4,6 @@ import { Pais } from '../../model/pais';
 import { DescricaoPage } from '../descricao/descricao';
 import { PaisProvider } from '../../providers/pais/pais';
 import { PaisDbProvider } from '../../providers/pais-db/pais-db';
-import { DatabaseProvider } from '../../providers/database/database';
 
 
 /**
@@ -19,52 +18,55 @@ import { DatabaseProvider } from '../../providers/database/database';
   selector: 'page-listar-paises',
   templateUrl: 'listar-paises.html',
   providers: [
-    PaisProvider
+    PaisProvider,
+    PaisDbProvider
   ]
 })
 export class ListarPaisesPage {
-  PaisDbProvider: any;
-  public Pais;
-  public Continente;
-  public lista_paises = new Array<any>();
-  public test:Pais;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private PaisProvider: PaisProvider,private dbProvider:DatabaseProvider) {
-    this.Continente = this.navParams.get("Continente");
+  public paises = new Array<any>();
+  public Continente: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private paisProvider: PaisProvider, private paisDbProvider: PaisDbProvider) {
+
+    this.Continente = navParams.get("Continente");
+
   }
 
 
-  
 
   ionViewDidLoad() {
+
+
+    // Um século procurando depois..
+    if (navigator.onLine) {
+      console.log("TestJson.");
+      // Se tem internet, busca REST
+      this.paisProvider.getContinente(this.Continente).subscribe(
+        data => {
+          const response = (data as any);
+          this.paises = JSON.parse(response._body);
+        }, error => {
+          console.log(error);
+        }
+      );
+      // E insere no SQLite os países buscados
+      this.paisDbProvider.inserirPaises(this.paises);
+    } else {
+      console.log("SQLITE");
+      // Busca no SQLite
+      this.paisDbProvider.listarPaises().then((paises: Pais[]) => {
+        this.paises = paises;
+      });
+    }
     
 
-   this.PaisProvider.getContinente(this.Continente).subscribe(
-    
 
-      data => {
-        const response = (data as any);
-        const objeto_retorno = JSON.parse(response._body);
-        this.lista_paises = objeto_retorno;
-        console.log(this.lista_paises);
-        console.log(objeto_retorno);
-        
-      }, error => {
-        console.log(error);
-        
-      }
-    )
-    
 
 
 
   }
 
-  carregarSqlite(){
-    this.PaisDbProvider.inserir(this.test);
-    this.PaisDbProvider.listar();
-
-  }
 
   listarDetalhes(paisNome) {
     console.log("Passou por aqui! listarDetalhes");

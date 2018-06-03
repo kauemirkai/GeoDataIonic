@@ -1,6 +1,7 @@
-import { DatabaseProvider } from '../database/database';
-import { Pais } from '../../model/pais';
-import { constructor } from 'localforage';
+import { Injectable } from '@angular/core';
+
+import { DatabaseProvider }	from '../database/database';
+import { Pais } from '../../model/Pais';
 import { SQLiteObject } from '@ionic-native/sqlite';
 
 /*
@@ -9,62 +10,47 @@ import { SQLiteObject } from '@ionic-native/sqlite';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-
+@Injectable()
 export class PaisDbProvider {
 
-
-  constructor(private dbProvider: DatabaseProvider, private PaisDbProvider:PaisDbProvider) {
+  constructor(public dbProvider: DatabaseProvider) {
     console.log('Hello PaisDbProvider Provider');
   }
 
-
-
-
-  public inserir(pais: Pais) {
-
+  public inserirPaises(paises: Pais []){
     return this.dbProvider.openDatabase().
-      then((db: SQLiteObject) => {
-        let sql = "INSERT	INTO	paises	(name)	VALUES	(?)";
-        let parametros = [pais.name/*, pais.capital, pais.callingCodes, pais.timezones, pais.region, pais.subregion, pais.population*/];
-        return db.executeSql(sql, parametros).
-          catch((e) => {
-            console.log(e);
-          });
-      }).catch((e) => {
-        console.log(e);
+    then((db: SQLiteObject) => {
+      let sql = "INSERT INTO pais (nome, codigo3, capital, regiao, subRegiao, demonimo, populacao, area, gini, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      paises.forEach(function (pais) {
+        let parametros = [pais.name, pais.alpha3Code, pais.capital, pais.region, pais.subregion, pais.demonym, pais.population, pais.area, pais.gini, pais.latlng[0], pais.latlng[1]];
+        db.executeSql(sql, parametros).
+        catch((e) => {
+          console.log(e);
+        });
       });
+    }).catch((e) => {
+      console.log(e);
+    });
   }
 
-  public listar() {
-    //abre	a	base
+  public listarPaises() {
     return this.dbProvider.openDatabase().
-      then((db: SQLiteObject) => {
-        //faz	o	select
-        let sql = "SELECT	*	FROM	paises";
-        return db.executeSql(sql, []).
-          then((data: any) => {
-            //se	tiver	alguma	linha	na	tabela
-            if (data.rows.length > 0) {
-              let paises: Pais[] = [];
-              //pega	cada	linha	e	coloca	num	vetor
-              for (let i = 0; i < data.rows.length; i++) {
-                paises.push(data.rows.item(i));
-              }
-              return paises;
-            }
-            else
-              //devolve	vetor	vazio	se	a	tabela	estiver	vazia
-              return [];
-          });
-      }).catch((e) => {
-        console.log(e);
+    then((db: SQLiteObject) => {
+      let sql = "SELECT * FROM pais";
+      return db.executeSql(sql, []).
+      then((data: any) => {
+        if (data.rows.length > 0){
+          let paises: Pais[] = [];
+          for (let i = 0; i < data.rows.length; i++) {
+            paises.push(data.rows.item(i));
+          }
+          return paises;
+        }
+        else return [];
       });
+    }).catch((e) => {
+      console.log(e);
+    });
   }
-
-
-
-
-
-
 
 }

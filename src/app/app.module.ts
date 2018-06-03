@@ -8,11 +8,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListarPaisesPageModule } from '../pages/listar-paises/listar-paises.module';
 import { DescricaoPageModule } from '../pages/descricao/descricao.module';
-import {HttpModule} from "@angular/http";
+import { HttpModule } from "@angular/http";
 import { PaisProvider } from '../providers/pais/pais';
 import { DatabaseProvider } from '../providers/database/database';
-import {SQLite}	from '@ionic-native/sqlite'
-import { PaisDbProvider } from '../providers/pais-db/pais-db';
+import { SQLite }	from '@ionic-native/sqlite'
 
 
 @NgModule({
@@ -38,7 +37,7 @@ import { PaisDbProvider } from '../providers/pais-db/pais-db';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PaisProvider,
     SQLite,
-    DatabaseProvider,
+    DatabaseProvider
   ]
 })
 export class AppModule {}
